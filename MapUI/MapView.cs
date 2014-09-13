@@ -146,6 +146,8 @@ namespace MapUI
         /// </summary>
         private List<object> initialSelectedNodes = null;
 
+        private IMainWindow mainWindow = null;
+
         #endregion Private Data Members
 
         public MapView()
@@ -174,6 +176,11 @@ namespace MapUI
             AddHandler(ConnectorItem.ConnectorDragStartedEvent, new ConnectorItemDragStartedEventHandler(ConnectorItem_DragStarted));
             AddHandler(ConnectorItem.ConnectorDraggingEvent, new ConnectorItemDraggingEventHandler(ConnectorItem_Dragging));
             AddHandler(ConnectorItem.ConnectorDragCompletedEvent, new ConnectorItemDragCompletedEventHandler(ConnectorItem_DragCompleted));
+        }
+
+        public void SetMainWindow(IMainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
         }
 
         /// <summary>
@@ -418,6 +425,7 @@ namespace MapUI
         /// </summary>
         public bool IsDragging
         {
+
             get
             {
                 return (bool)GetValue(IsDraggingProperty);

@@ -25,11 +25,13 @@ namespace KnowledgeMap
     /// <summary>
     /// This is a Window that uses MapView to display a flow-chart.
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IMainWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            this.MapControl.SetMainWindow(this);
         }
 
         /// <summary>
@@ -41,6 +43,11 @@ namespace KnowledgeMap
             {
                 return (MainWindowViewModel)DataContext;
             }
+        }
+
+        public void ExpandContent()
+        {
+            this.ViewModel.ExpandContent();
         }
 
         /// <summary>
@@ -63,6 +70,8 @@ namespace KnowledgeMap
             overviewWindow.Owner = this;
             overviewWindow.DataContext = this.ViewModel; // Pass the view model onto the overview window.
             overviewWindow.Show();
+
+            this.ViewModel.ExpandContent();
         }
 
         /// <summary>
@@ -186,6 +195,8 @@ namespace KnowledgeMap
             var element = (FrameworkElement)sender;
             var node = (NodeViewModel)element.DataContext;
             node.Size = new Size(element.ActualWidth, element.ActualHeight);
+
+            this.ViewModel.ExpandContent();
         }
     }
 }

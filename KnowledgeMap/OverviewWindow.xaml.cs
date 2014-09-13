@@ -86,6 +86,5 @@ namespace KnowledgeMap
             Canvas.SetLeft(overviewZoomRectThumb, newX);
             Canvas.SetTop(overviewZoomRectThumb, newY);
         }
-
     }
 }

@@ -87,6 +87,50 @@ namespace KnowledgeMap
             }
         }
 
+        /// <summary>
+        /// Expand the content area to fit the rectangles.
+        /// </summary>
+        public void ExpandContent()
+        {
+            double xOffset = 0;
+            double yOffset = 0;
+            Rect contentRect = new Rect(0, 0, 0, 0);
+            foreach (NodeViewModel node in this.map.Nodes)
+            {
+                if (node.Size.IsEmpty)
+                {
+                    return;
+                }
+
+                if (node.X < xOffset)
+                {
+                    xOffset = node.X;
+                }
+
+                if (node.Y < yOffset)
+                {
+                    yOffset = node.Y;
+                }
+
+                contentRect.Union(new Rect(node.X, node.Y, node.Size.Width, node.Size.Height));
+            }
+
+            //
+            // Translate all rectangles so they are in positive space.
+            //
+            xOffset = Math.Abs(xOffset);
+            yOffset = Math.Abs(yOffset);
+
+            foreach (NodeViewModel node in this.map.Nodes)
+            {
+                node.X += xOffset;
+                node.Y += yOffset;
+            }
+
+            this.ContentWidth = contentRect.Width + 100;
+            this.ContentHeight = contentRect.Height + 100;
+        }
+
         ///
         /// The current scale at which the content is being viewed.
         /// 

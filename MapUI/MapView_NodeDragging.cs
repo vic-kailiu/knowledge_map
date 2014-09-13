@@ -100,6 +100,8 @@ namespace MapUI
             this.IsNotDragging = true;
             this.IsDraggingNode = false;
             this.IsNotDraggingNode = true;
+
+            this.mainWindow.ExpandContent();
         }
 
         #endregion Private Methods

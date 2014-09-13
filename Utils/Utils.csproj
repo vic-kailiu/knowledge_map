@@ -81,6 +81,7 @@
     <Compile Include="AdornerPlacement.cs" />
     <Compile Include="CollectionItemsChangedEventArgs.cs" />
     <Compile Include="FrameworkElementAdorner.cs" />
+    <Compile Include="IMainWindow.cs" />
     <Compile Include="ImpObservableCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WpfUtils.cs" />
